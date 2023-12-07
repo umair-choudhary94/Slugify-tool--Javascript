@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slugify</title>
+     <!-- Font Awesome -->
+     <link
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+     rel="stylesheet"
+     />
+     <!-- Google Fonts -->
+     <link
+     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+     rel="stylesheet"
+     />
+     <!-- MDB -->
+     <link
+     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+     rel="stylesheet"
+     />
+   <style>
+    
+     
+     .btn-primary{
+         /* background-color:#7202c7; */
+         background-color: #7208c1;
+         /* shadow:none; */
+         margin-top: 10px;
+         
+     }
+     .btn-secondary{
+       background-color:#8ab5f5;
+       color:black;
+       margin-top: 10px;
+     }
+     .btn-primary:hover{
+         background-color:white;
+         color:black;
+         border-bottom:1px solid #7202c7;
+         margin-top: 10px;
+     }
+     body{
+         background-color:#f5f4f4;
+     }
+     .navbar{
+         background-color:white;
+     }
+     .p-color{
+       color: #7202c7;
+   }
+     
+     .logo{
+       color: #840fdf;
+     }
+     
+ 
+   </style>
+       
+ 
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="card shadow-0 border p-md-4 p-2 mt-2">
+          <div class="text-center mt-2">
+            <h1>String to Slug Converter</h1>
+            <p>Free textfixer tool to convert string in slug.</p>
+          </div>
+          <hr>
+      
+          <label for="inputString" class="mt-4">Enter String: </label>
+          <input type="text" id="inputString" name="inputString" class="form-control" >
+      
+          <div class="form-inline mt-3">
+            <div class="form-check form-check-inline ">
+              <input class="form-check-input" type="radio" name="separator" id="dashSeparator" value="-" />
+              <label class="form-check-label" for="dashSeparator">Seprate with dashes</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="separator" id="underscoreSeparator" value="_" />
+              <label class="form-check-label" for="underscoreSeparator">Seprate with underscore</label>
+            </div>
+          </div>
+      
+          <div>
+            <button type="button" onclick="convertToSlug()" class="btn btn-primary">Convert</button>
+            <button type="button" onclick="copySlug()" class="btn btn-secondary">Copy Slug</button>
+          </div>
+            
+          <!-- <label for="outputSlug" class="mt-3">Output Slug:</label> -->
+          <input type="text" id="outputSlug" name="outputSlug" readonly class="form-control mt-3 mb-4"placeholder="Output here">
+        
+        </div>
+      </div>
+      
+      
+          <script type="text/javascript">
+            function convertToSlug() {
+              var text = document.getElementById("inputString").value;
+              var separator = document.querySelector('input[name="separator"]:checked').value;
+              var slug = text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g, separator);
+              document.getElementById("outputSlug").value = slug;
+            }
+            
+            function copySlug() {
+              var slug = document.getElementById("outputSlug").value;
+              if (slug) {
+                navigator.clipboard.writeText(slug);
+                alert("Slug copied to clipboard!");
+              }
+            }
+          </script>
+</body>
+</html>
